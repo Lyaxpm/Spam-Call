@@ -14,6 +14,7 @@ class Frey {
     while (0 < $jumlah) {
       $call = Frey::request(self::$cmd['call'], ['target' => $target], $key);
       $response = json_decode($call, true);
+      // return print_r($call);
       if ($response['status'] == true) {
         echo 'call ke ' . $loop+1 . ' terkirim'. PHP_EOL;
       } else {
@@ -72,10 +73,8 @@ class Frey {
     curl_setopt($curl, CURLOPT_POST, 1);
     curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($params));
     curl_setopt($curl, CURLOPT_HTTPHEADER, [
-      "Host: freyapp.my.id",
       "X-Apikey: " . $key
     ]);
-    curl_setopt($curl, CURLOPT_HEADER, true);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     $result = curl_exec($curl);
     curl_close($curl);
