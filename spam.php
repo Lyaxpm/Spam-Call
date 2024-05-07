@@ -65,13 +65,16 @@ class Frey {
         echo $response['message'];
       }
     }
-}
+  }
   public function request($url, $params, $key) {
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, self::URL . $url);
     curl_setopt($curl, CURLOPT_POST, 1);
     curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($params));
-    curl_setopt($curl, CURLOPT_HTTPHEADER, ["x-apikey: " . $key]);
+    curl_setopt($curl, CURLOPT_HTTPHEADER, [
+      "Host: freyapp.my.id",
+      "X-Apikey: " . $key
+    ]);
     curl_setopt($curl, CURLOPT_HEADER, true);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     $result = curl_exec($curl);
