@@ -17,7 +17,11 @@ class Frey {
       if ($response['status'] == true) {
         echo 'call ke ' . $loop+1 . ' terkirim'. PHP_EOL;
       } else {
-        echo $response['message'];
+        if (isset($response['message'])) {
+          echo $response['message']
+        } else {
+          echo 'test';
+        }
       }
       sleep(30);
       $loop++;
